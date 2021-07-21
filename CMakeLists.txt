@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 project(cmdlinerunner)
 set(CMAKE_EXE_LINKER_FLAGS " -static")
+set(CMAKE_CONFIGURATION_TYPES ${CMAKE_BUILD_TYPE} CACHE STRING "" FORCE)
 add_library(cmdlinerunner SHARED cmdlinerunner.c)
 target_compile_definitions(cmdlinerunner PUBLIC UNICODE _UNICODE)
 set_target_properties(cmdlinerunner PROPERTIES PREFIX "")

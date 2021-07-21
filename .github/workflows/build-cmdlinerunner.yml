@@ -12,12 +12,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Get the version
-        id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-        shell: bash
       - name: Build cmdlinerunner
-        run:  mkdir -p build && cd build && cmake -DCMAKE_TOOLCHAIN_FILE=../toolchain-i686-w64-mingw32.cmake -DCMAKE_BUILD_TYPE=Release .. && cmake --build .
+        run:  mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --config Release
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -35,6 +31,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/cmdlinerunner.dll
+          asset_path: ./build/Release/cmdlinerunner.dll
           asset_name: cmdlinerunner.dll
           asset_content_type: application/octet-stream
