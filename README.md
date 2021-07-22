@@ -6,7 +6,7 @@ Example project: https://github.com/espressif/idf-installer/tree/main/src/InnoSe
 
 Example of usage:
 
-```
+```pascal
 [Files]
 Source: "lib\cmdlinerunner.dll"; Flags: dontcopy
 
